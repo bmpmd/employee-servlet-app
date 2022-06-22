@@ -25,6 +25,10 @@ public class EmployeeDao {
 		//capture pk returned when the session method save() is called
 		int pk = (int) ses.save(e);
 		
+		//AND COMMIT THE TRANSACTION!! 
+		tx.commit();
+		
+		
 		//return the pk 
 		return pk;
 	}

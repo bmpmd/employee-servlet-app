@@ -2,6 +2,7 @@ package com.revature.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,85 @@ public class RequestHelper {
 	//object mapper (for frontend) from jackson 
 	private static ObjectMapper om = new ObjectMapper();
 
+	/*
+	 * this method will call the employee service's findAll() method 
+	 *  -- use an object mapper to transform the list to a JSON string 
+	 *  then use printwriter to print out json string to screen
+	 *  
+	 */
+	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		//http://localhost:8080/employee-servlet-app/employees
+		// will return the entire list of employees in json ..
+		
+		//1 set content type of respones 
+		response.setContentType("text/html");
+		
+		//2 call findall method from eserv 
+		 List<Employee> emps = eserv.getAll();
+		 
+		//3 transform the lsit to a string 
+		String jsonString = om.writeValueAsString(emps);
+		//4 write it out (get printwriter b4 tho)
+		PrintWriter out = response.getWriter();
+		out.write(jsonString);// writes to response body rather than print on page
+		
+		
+		
+	}
+	
+	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		//since we're forwarding the request from front ctrler, steps needed
+		
+		//1. Extract the parameters from the request (username and password, etc )
+		String firstname = request.getParameter("firstname");//name of param
+		String lastname = request.getParameter("lastname");//name of param
+		String username = request.getParameter("username");//name of param
+		String password = request.getParameter("password");//name of param
+		
+		//2 construct a new eployee object 
+		Employee e = new Employee(firstname, lastname, username, password);
+		
+		//3 call the register() method from the service layer 
+		int pk = eserv.register(e);//this retunrs pk 
+		
+		//4 check its id.. if > 0, then successful new user. 
+		if(pk > 0) {
+			//sucessful register 
+			
+			
+			//add user to session 
+			e.setId(pk);//make surte to set the pk from the one in the db gave it 
+			HttpSession ses = request.getSession();
+			ses.setAttribute("the-user", e);
+			
+			// and using the Request helper, forward the request and response to a new resource..
+			//send the user to a new page -- welcome.html 
+			request.getRequestDispatcher("welcome.html").forward(request, response);//have yet to make this. in webapp create this page 
+			
+			
+		}
+		else {
+			
+			//TODO: provide better logic in the Service layer to check for PSQL exceptions...
+			//-> not catching it right, displays err 
+			
+			//fail to register new emp 
+			//if it's -1 that means the register method failed (and there's probably a duplicate user)
+			//diff msg for diff fails? like failed to register doesnt always mean dupe user 
+			
+			//use printwriter to print out 
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			//could geneerate page on the fly Or just make these pages and point them like we did above there lol 
+			out.println("<h1> Regsitration failed. User already exists.</h1>");
+			out.println("<a href=\"index.html\">Back</a>");
+
+		}
+			
+		
+		
+		
+	}
 	//even tho not a servlet, think about what this method does 
 	//waht it do? 
 	/*

@@ -31,7 +31,10 @@ public class FrontController extends HttpServlet {
 			break;
 		case "employees":
 			// ivoke some functionality from the RequestHelper which would return all
-			// Employees
+			RequestHelper.processEmployees(request, response);
+			break;
+		case "register":
+			RequestHelper.processRegistration(request, response);
 			break;
 		default:
 			// custom error page in case someone put garbage in uri here
