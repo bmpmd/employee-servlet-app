@@ -13,16 +13,17 @@
 		</property>
 
 		<!-- Assume test is the database name -->
-		<!-- REPLACE LOCALHOST W REMOTE DB LATER -->
+		<!-- REPLACE LOCALHOST W REMOTE DB LATER 
+				- done  here :) connects to extra enterprise one, but in proiject it shuold be our own thing -->
 		<property name="hibernate.connection.url">
-			jdbc:postgresql://localhost:5432/postgres
+			jdbc:postgresql://extra-enterprise-220531.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres
 		</property>
 
 		<property name="hibernate.connection.username">postgres</property>
 
-		<property name="hibernate.connection.password">POSTGRES</property>
+		<property name="hibernate.connection.password">postgres</property>
 		<!-- what schema we work in -->
-		<property name="hibernate.default_schema">public</property>
+		<property name="hibernate.default_schema">leoj</property>
 		<!-- CREATE will drop any existing tables and RECREATE our tables -->
 		<!-- create is not a good setting, VALIDATE is much better for projects IRL -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
