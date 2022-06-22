@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register</title>
+</head>
+<body>
+	<h1>Welcome User</h1>
+	<h3>Please login below:</h3>
+	
+	<!-- post bc just querying. also get would show the parameters publicly
+	ie. google.com/search?q=puppies shows that u searched for puppies -->
+	<!-- POST requests hide the parameters. the parameters are in the body of the request
+	rather than in the URL -->
+	<!-- ACTION takes you to that resource after button -->
+	
+	<!-- 
+		--webxml : program a /register url pattern to point to the Front controller in the servlet mapping tag 
+		- setup a case for a register url in the front controller
+		-- set up the actual functionality in the RequestHelper (that defines the functionality/what we do)
+				-> in the request helper, call the service layer to insert an employee objec
+					constructred from the parameters of the request 
+	 -->
+	<form method="POST" action="register">
+	
+		<label>First Name</label> 
+		<input type="text" name="firstname" placeholder="Enter a firstname..."><br /> 
+		
+		<label>Last Name</label> 
+		<input type="text" name="lastname" placeholder="Enter a firstname..."><br /> 
+		
+		<!-- action bc http..../login  -->
+		<label>Username</label> 
+		<input type="text" name="username" placeholder="Enter a username..."><br /> 
+			
+		<!-- hovering over "text" shows us what other enums we could put 
+		can put password, which will  -->
+		
+		<label>Password</label>
+		<input type="password" name="password" placeholder="Enter a password...">
+		
+		<input type="submit" value="Register!">
+	</form>
+
+
+
+</body>
+</html>

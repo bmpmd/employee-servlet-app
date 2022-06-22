@@ -25,6 +25,20 @@
 		<input type="password" name="password" placeholder="Enter a password...">
 		<input type="submit" value="Login!">
 	</form>
+	<br />
+	<!-- whenever i weant a button to submit some type of HTTP request,
+	 it MUST BE in a FORM to dictate the HTTP VERB and URL it's going to  -->
+	<form method="GET" action="registration.html"> <!-- goes to .... employee-servlet-app/register, which front controller will handle then reqwuest helper etc.... -->
+		<input type="submit" value="Register!">
+	</form>
+	
+	<!--  3 steps each time edit webxml
+			edit fron ctrl
+			add functionality to request helpre  -->
+	<form method="GET" action="employees"> <!-- goes to .... employee-servlet-app/employees, which front controller will handle then reqwuest helper etc.... -->
+		<input type="submit" value="See all employees">
+	</form>
+	
 	
 	<!-- later we'll put a form below which sends a GET request to view all of the employees -->
 

@@ -26,6 +26,12 @@ public class EmployeeService {
 		this.edao = edao;
 	}
 	
+	public int register(Employee e) {
+		return edao.insert(e);
+	}
+	
+	
+	
 	/*
 	 * this is an idea of an implementation 
 	 * 
