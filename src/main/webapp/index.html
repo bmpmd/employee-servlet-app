@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Servlet App</title>
+</head>
+<body>
+	<h1>Welcome Employee</h1>
+	<h3>Please login below:</h3>
+
+	<!-- post bc just querying. also get would show the parameters publicly
+	ie. google.com/search?q=puppies shows that u searched for puppies -->
+	<!-- POST requests hide the parameters. the parameters are in the body of the request
+	rather than in the URL -->
+	<form method="POST" action="login">
+		<!-- action bc http..../login  -->
+		<label>Username</label> 
+		<input type="text" name="username" placeholder="Enter a username..."><br /> 
+			
+		<!-- hovering over "text" shows us what other enums we could put 
+		can put password, which will  -->
+		
+		
+		<label>Password</label>
+		<input type="password" name="password" placeholder="Enter a password...">
+		<input type="submit" value="Login!">
+	</form>
+	<br />
+	<!-- whenever i weant a button to submit some type of HTTP request,
+	 it MUST BE in a FORM to dictate the HTTP VERB and URL it's going to  -->
+	<form method="GET" action="registration.html"> <!-- goes to .... employee-servlet-app/register, which front controller will handle then reqwuest helper etc.... -->
+		<input type="submit" value="Register!">
+	</form>
+	
+	
+	<!-- form belowsends a GET request to view all of the employees -->
+	<!--  3 steps each time edit webxml
+			edit fron ctrl
+			add functionality to request helpre  -->
+	<form method="GET" action="employees"> <!-- goes to .... employee-servlet-app/employees, which front controller will handle then reqwuest helper etc.... -->
+		<input type="submit" value="See all employees">
+	</form>
+	
+	
+	
+
+</body>
+</html>

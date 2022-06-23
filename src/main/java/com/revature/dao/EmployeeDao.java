@@ -25,6 +25,10 @@ public class EmployeeDao {
 		//capture pk returned when the session method save() is called
 		int pk = (int) ses.save(e);
 		
+		//AND COMMIT THE TRANSACTION!! 
+		tx.commit();
+		
+		
 		//return the pk 
 		return pk;
 	}
@@ -32,7 +36,13 @@ public class EmployeeDao {
 	
 	//read 
 	public List<Employee> findAll(){
-		List<Employee> employees = new ArrayList<Employee>();
+		
+		//grab session 
+		Session ses = HibernateUtil.getSession();
+		//make an HQL statement -- Hibernate Query Language, odd mix of OOP and native SQL 
+		//aka, mixed one 
+		List<Employee> employees = ses.createQuery("from Employee", Employee.class).list();//[SELECT] from [table, but object name].list() to ge tthe list 
+		
 		return employees;
 	}
 	
