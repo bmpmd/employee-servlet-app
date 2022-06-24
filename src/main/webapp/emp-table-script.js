@@ -26,7 +26,8 @@ function fetchEmps(){
 
     let hostname = window.location.hostname // tyhis will grab IP of where it's deployed (localhost, or Live server )
     //this is the url that retrieves the employee list with a template literal
-    fetch(`http://${hostname}:8080/employee-servlet-app/employees`)
+    //EDIT: we must remove the portname because when it's deployed it wont need this bc port is already inferred when deploying
+    fetch(`http://${hostname}/employee-servlet-app/employees`)
     .then(response => response.json() ) // takes a json string 
                                         //and trnasforms it to Javascript object
     //.then(obj => console.log(obj));//then print       
