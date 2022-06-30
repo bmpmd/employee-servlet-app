@@ -15,6 +15,9 @@
     <url-pattern>/login</url-pattern>
     <url-pattern>/employees</url-pattern>
     <url-pattern>/register</url-pattern>
+    <url-pattern>/form</url-pattern>
+    <url-pattern>/profile</url-pattern>
+    <url-pattern>/reimbursements</url-pattern>
     <!-- http://localhost:8080/employee-servlet-app/login 
     http://localhost:8080/employee-servlet-app/login 
     triggers to This servlet's (FrontController.java) get() method-->
